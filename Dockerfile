@@ -34,5 +34,7 @@ COPY .kconfig ./
 COPY ucode.patch ./target/linux/x86/patches-4.4/
 COPY kconfig.sh ./
 
-RUN chmod +x kconfig.sh && ./kconfig.sh && \
-    make defconfig && make
+RUN chmod +x kconfig.sh && ./kconfig.sh 
+RUN make defconfig
+RUN make download
+RUN make -j $(getconf _NPROCESSORS_ONLN)
