@@ -18,6 +18,7 @@ RUN apt-get update && \
      gettext \
      unzip \
      file \
+     ccache \
      libssl-dev \
      wget \
      curl && \
@@ -36,5 +37,5 @@ COPY kconfig.sh ./
 
 RUN chmod +x kconfig.sh && ./kconfig.sh 
 RUN make defconfig
-RUN make download
+RUN make -j1 V=s download
 RUN make -j $(getconf _NPROCESSORS_ONLN)
