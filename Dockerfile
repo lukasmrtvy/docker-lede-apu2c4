@@ -43,5 +43,5 @@ RUN chmod +x kconfig.sh && ./kconfig.sh
 RUN make defconfig
 #RUN make -j1 V=s download
 RUN make download
-#RUN make -j1 V=s
-RUN make -j $(getconf _NPROCESSORS_ONLN)
+RUN make -j1 V=s
+#RUN make -j $(getconf _NPROCESSORS_ONLN)
