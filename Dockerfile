@@ -27,7 +27,8 @@ RUN apk update && apk add --no-cache \
                               findutils \
                               rsync \
                               linux-headers \
-                              xz
+                              xz \
+                              sdl-dev
 
 RUN mkdir -p /data/lede && curl -sSL https://github.com/lede-project/source/archive/v${VERSION}.tar.gz | tar xz -C /data/lede --strip-components=1
 
