@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM frolvlad/alpine-glibc:latest
 
 ENV VERSION 17.01.4
 ENV FORCE_UNSAFE_CONFIGURE 1
