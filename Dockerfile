@@ -23,7 +23,7 @@ RUN make defconfig
 #RUN make download
 
 
-RUN echo "ftp.gnupg.org 10.0.0.4" > /etc/resolve.conf && make download
+RUN echo "ftp.gnupg.org 10.0.0.4" > /etc/hosts && make download
 
 #RUN make -j $(getconf _NPROCESSORS_ONLN)
 RUN make -j1 V=s 
