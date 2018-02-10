@@ -38,12 +38,23 @@ RUN ./scripts/feeds update -a && \
     ./scripts/feeds install -a
 
 COPY .config ./
-COPY .kconfig ./
-COPY ucode.patch ./target/linux/x86/patches-4.4/
-COPY kconfig.sh ./
-
-RUN chmod +x kconfig.sh && ./kconfig.sh 
 RUN make defconfig
+
+RUN  make target/linux/prepare
+
+COPY .kconfig /tmp
+
+RUN rm -rf  /build_dir/target-x86_64_musl-1.1.16/linux-x86_64/linux-4.4.9/.config
+
+RUN cp /tmp/.kconfig /build_dir/target-x86_64_musl-1.1.16/linux-x86_64/linux-4.4.9/.config
+RUN cd /build_dir/target-x86_64_musl-1.1.16/linux-x86_64/linux-4.4.9/ && make defconfig
+
+
+
+#COPY ucode.patch ./target/linux/x86/patches-4.4/
+#COPY kconfig.sh ./
+#RUN chmod +x kconfig.sh && ./kconfig.sh 
+
 #RUN make -j1 V=s download
 RUN make download
 RUN make -j1 V=s
