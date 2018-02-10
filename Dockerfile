@@ -65,6 +65,6 @@ RUN cd ./build_dir/target-x86_64_musl-1.1.16/linux-x86_64/linux-4.4.92/ && make 
 #RUN chmod +x kconfig.sh && ./kconfig.sh 
 
 #RUN make -j1 V=s download
-RUN make download
+RUN echo "10.0.0.4 ftp.gnupg.org " >> /etc/hosts && make download
 RUN make -j1 V=s
 #RUN make -j $(getconf _NPROCESSORS_ONLN)
