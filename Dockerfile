@@ -46,6 +46,13 @@ COPY .kconfig /tmp
 
 RUN make target/linux/prepare
 
+RUN ls -lha /tmp/
+RUN ls -lha ./ 
+RUN ls -lha ./build_dir
+RUN ls -lha ./build_dir/target-x86_64_musl-1.1.16
+RUN ls -lha ./build_dir/target-x86_64_musl-1.1.16/linux-x86_64
+RUN ls -lha ./build_dir/target-x86_64_musl-1.1.16/linux-x86_64/linux-4.4.9/
+
 #RUN rm -rf  /build_dir/target-x86_64_musl-1.1.16/linux-x86_64/linux-4.4.9/.config
 
 RUN cp /tmp/.kconfig ./build_dir/target-x86_64_musl-1.1.16/linux-x86_64/linux-4.4.9/.config
