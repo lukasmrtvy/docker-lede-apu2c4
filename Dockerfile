@@ -16,14 +16,16 @@ RUN ./scripts/feeds update -a && \
 
 COPY .config ./
 COPY .kconfig ./
-#COPY ucode.patch ./target/linux/x86/patches-4.4/
+COPY ucode.patch ./target/linux/x86/patches-4.4/
 COPY kconfig.sh ./
 
 RUN chmod +x kconfig.sh && ./kconfig.sh
 
 RUN make defconfig
-#RUN make download
 
+RUN yes "" | make kernel_oldconfig CONFIG_TARGET=subtarget
+
+#RUN make download
 
 RUN echo "10.0.0.4 ftp.gnupg.org " >> /etc/hosts && make download
 
