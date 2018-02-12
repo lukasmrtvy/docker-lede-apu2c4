@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:17.10 as builder
 
 ENV VERSION 17.01.4
 ENV FORCE_UNSAFE_CONFIGURE 1
@@ -31,3 +31,7 @@ RUN echo "10.0.0.4 ftp.gnupg.org " >> /etc/hosts && make download
 
 #RUN make -j $(getconf _NPROCESSORS_ONLN)
 RUN make -j1 V=s  2>&1
+
+FROM alpine:3.7
+
+COPY --from=builder /data/lede/bin/* /tmp/
