@@ -19,7 +19,8 @@ COPY .kconfig ./
 COPY ucode.patch ./target/linux/x86/patches-4.4/
 COPY kconfig.sh ./
 
-RUN chmod +x kconfig.sh && ./kconfig.sh
+RUN chmod +x kconfig.sh
+RUN ./kconfig.sh
 
 RUN make defconfig
 
