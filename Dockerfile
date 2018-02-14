@@ -24,7 +24,7 @@ RUN ./kconfig.sh
 
 RUN make defconfig
 
-RUN yes "" | make kernel_oldconfig CONFIG_TARGET=subtarget
+#RUN yes "" | make kernel_oldconfig CONFIG_TARGET=subtarget
 
 #RUN make download
 
