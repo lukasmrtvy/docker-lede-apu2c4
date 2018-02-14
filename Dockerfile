@@ -36,3 +36,9 @@ RUN make -j1 V=s  2>&1
 FROM alpine:3.7
 
 COPY --from=builder /data/lede/bin/* /tmp/
+
+RUN  ls -lha /tmp/
+
+RUN apk update && apk add --no-cache mailutils
+
+#RUN curl --upload-file /tmp/hello.txt https://transfer.sh/hello.txt 
