@@ -17,6 +17,7 @@ RUN ./scripts/feeds update -a && \
 COPY .config ./
 COPY .kconfig ./
 COPY ucode.patch ./target/linux/x86/patches-4.4/
+COPY gpio-nct5104d.patch ./target/linux/x86/patches-4.4/
 COPY kconfig.sh ./
 
 RUN cat ./.config
