@@ -1,6 +1,5 @@
 --- a/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
 +++ b/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
-
 @@ -15,8 +15,6 @@
  #include <linux/io.h>
  #include <linux/gpio.h>
@@ -20,7 +19,7 @@
  
  enum chips { nct5104d };
  
-@@ -274,8 +273,11 @@ static int nct5104d_gpio_probe(struct platform_device *pdev)
+@@ -274,8 +273,11 @@ static int nct5104d_gpio_probe(struct pl
  	/* For each GPIO bank, register a GPIO chip. */
  	for (i = 0; i < data->nr_bank; i++) {
  		struct nct5104d_gpio_bank *bank = &data->bank[i];
@@ -33,7 +32,7 @@
  		bank->data = data;
  
  		err = gpiochip_add(&bank->chip);
-@@ -346,7 +348,8 @@ static int __init nct5104d_find(int addr, struct nct5104d_sio *sio)
+@@ -346,7 +348,8 @@ static int __init nct5104d_find(int addr
  	devid = superio_inw(addr, SIO_CHIPID);
  	switch (devid) {
  	case SIO_NCT5104D_ID:
@@ -43,7 +42,7 @@
  		sio->type = nct5104d;
  		/* enable GPIO0 and GPIO1 */
  		superio_select(addr, SIO_LD_GPIO);
-@@ -425,13 +428,6 @@ static int __init nct5104d_gpio_init(void)
+@@ -425,13 +428,6 @@ static int __init nct5104d_gpio_init(voi
  {
  	int err;
  	struct nct5104d_sio sio;
