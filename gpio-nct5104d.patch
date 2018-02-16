@@ -1,7 +1,6 @@
-diff --git a/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c b/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
-index a37a1d0..3262ce9 100644
---- a/gpio-nct5104d.c.1
-+++ b/gpio-nct5104d.c
+--- a/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
++++ b/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
+
 @@ -15,8 +15,6 @@
  #include <linux/io.h>
  #include <linux/gpio.h>
