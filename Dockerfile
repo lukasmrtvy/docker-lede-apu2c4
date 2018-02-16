@@ -18,7 +18,7 @@ COPY .config ./
 COPY .kconfig ./
 COPY ucode.patch ./target/linux/x86/patches-4.4/
 RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/
-#COPY gpio-nct5104d.patch ./package/kernel/gpio-nct5104d/patches/
+COPY gpio-nct5104d.patch ./package/kernel/gpio-nct5104d/patches/
 COPY kconfig.sh ./
 
 RUN cat ./.config
