@@ -1,5 +1,5 @@
---- a/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
-+++ b/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
+--- a/src/gpio-nct5104d.c
++++ b/src/gpio-nct5104d.c
 @@ -15,8 +15,6 @@
  #include <linux/io.h>
  #include <linux/gpio.h>
