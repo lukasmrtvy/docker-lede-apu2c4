@@ -39,8 +39,8 @@ RUN make defconfig
 
 RUN echo "10.0.0.4 ftp.gnupg.org " >> /etc/hosts && make download
 
-RUN make -j $(getconf _NPROCESSORS_ONLN)
-#RUN make -j1 V=s  2>&1
+#RUN make -j $(getconf _NPROCESSORS_ONLN)
+RUN make -j1 V=s  2>&1
 
 FROM alpine:3.7
 
