@@ -16,12 +16,6 @@ RUN ./scripts/feeds update -a && \
 
 COPY .config ./
 COPY .kconfig ./
-COPY ucode.patch ./target/linux/x86/patches-4.4/
-RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/
-COPY gpio-nct5104d.patch ./package/kernel/gpio-nct5104d/patches/
-
-RUN mkdir -p ./package/kernel/leds-apu2/patches/
-COPY leds-apu2.patch ./package/kernel/leds-apu2/patches/
 
 COPY kconfig.sh ./
 
