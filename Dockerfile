@@ -36,9 +36,9 @@ RUN echo "10.0.0.4 ftp.gnupg.org " >> /etc/hosts && make download
 #RUN make -j $(getconf _NPROCESSORS_ONLN)
 RUN make -j1 V=s  2>&1
 
-RUN ls -lha /data/lede/bin
-RUN ls -lha /data/lede/bin/x86  2>&1
-RUN ls -lha /data/lede/bin/x86_64 2>&1
+RUN ls -lha /data/lede/bin/targets
+RUN ls -lha /data/lede/bin/targets/x86  2>&1
+RUN ls -lha /data/lede/bin/targets/x86_64 2>&1
 
 FROM alpine:3.7
 
