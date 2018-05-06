@@ -52,4 +52,6 @@ RUN ls -lha /tmp/x86_64 2>&1 || true
 
 RUN cd /tmp/ && ls /tmp/ |grep 'combined-ext4.img.gz' | xargs -I % -n1 mv % /tmp/lede-snapshot-combined-ext4.img.gz
 
+RUN ls -lha /tmp/
+
 RUN curl --upload-file /tmp/lede-snapshot-combined-ext4.img.gz https://transfer.sh/lede-snapshot-combined-ext4.img.gz
