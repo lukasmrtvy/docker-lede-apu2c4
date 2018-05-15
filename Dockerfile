@@ -45,7 +45,7 @@ FROM alpine:3.7
 ENV name=test-service
 ENV type=download-link
 
-RUN apk update && apk add --no-cache curl
+RUN apk update && apk add --no-cache curl jq
 
 COPY --from=builder /data/lede/bin/* /tmp/
 
@@ -54,6 +54,13 @@ RUN cd /tmp/x86/64 && ls /tmp/x86/64 |grep 'combined-ext4.img.gz' | xargs -I % -
 RUN url=$(curl --upload-file /tmp/lede-snapshot-combined-ext4.img.gz https://transfer.sh/lede-snapshot-combined-ext4.img.gz) && \
 curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"${name}"'","value2":"'"${type}"'","value3":"'"${url}"'"}' https://maker.ifttt.com/trigger/upload/with/key/cPy1lybKqXvF7uT3LvDTkk
 
-RUN echo ${url}
+
+RUN response=$(curl -F "file=@lede-snapshot-combined-ext4.img.gz" https://file.io) && url=$(echo $response | jq -r .link) && \
+curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"${name}"'","value2":"'"${type}"'","value3":"'"${url}"'"}' https://maker.ifttt.com/trigger/upload/with/key/cPy1lybKqXvF7uT3LvDTkk
+
 
 RUN sha256sum /tmp/lede-snapshot-combined-ext4.img.gz
+
+
+
+
