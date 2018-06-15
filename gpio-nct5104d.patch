@@ -1,5 +1,3 @@
-diff --git a/package/kernel/leds-apu2/src/leds-apu2.c b/package/kernel/leds-apu2/src/leds-apu2.c
-index 4ea552c..2fefa85 100644
 --- a/package/kernel/leds-apu2/src/leds-apu2.c
 +++ b/package/kernel/leds-apu2/src/leds-apu2.c
 @@ -335,7 +335,10 @@  static int __init gpio_apu2_init (void)
