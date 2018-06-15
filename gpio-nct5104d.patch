@@ -1,5 +1,5 @@
---- a/package/kernel/leds-apu2/src/leds-apu2.c
-+++ b/package/kernel/leds-apu2/src/leds-apu2.c
+--- a/gpio-nct5104d.c
++++ b/gpio-nct5104d.c
 @@ -335,7 +335,10 @@  static int __init gpio_apu2_init (void)
  	if (!board_name \
  			|| !board_vendor \
