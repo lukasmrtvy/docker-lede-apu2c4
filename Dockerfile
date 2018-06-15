@@ -17,6 +17,9 @@ RUN ./scripts/feeds update -a && \
 COPY .config ./
 COPY .kconfig ./
 
+RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/
+COPY gpio-nct5104d.patch ./package/kernel/gpio-nct5104d/patches/
+
 COPY kconfig.sh ./
 
 RUN cat ./.config
