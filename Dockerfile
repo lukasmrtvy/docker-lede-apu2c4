@@ -7,6 +7,8 @@ ENV TERM=xterm
 
 RUN apt-get update && apt-get install -y subversion g++ zlib1g-dev build-essential git python rsync man-db libncurses5-dev gawk gettext unzip file libssl-dev wget curl
 
+RUN apt-get update && apt-get install -y time
+
 RUN mkdir -p /data/lede | curl -sSL https://github.com/lede-project/source/archive/v${VERSION}.tar.gz | tar xz -C /data/lede --strip-components=1
 
 WORKDIR /data/lede
