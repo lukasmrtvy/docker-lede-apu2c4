@@ -1,13 +1,13 @@
 FROM ubuntu:17.10 as builder
 
-ENV VERSION 17.01.4
+ENV VERSION 18.06
 ENV FORCE_UNSAFE_CONFIGURE 1
 
 ENV TERM=xterm
 
 RUN apt-get update && apt-get install -y subversion g++ zlib1g-dev build-essential git python rsync man-db libncurses5-dev gawk gettext unzip file libssl-dev wget curl
 
-RUN mkdir -p /data/lede && git clone https://github.com/lede-project/source.git /data/lede && cd /data/lede && git checkout lede-17.01
+RUN mkdir -p /data/lede && git clone https://github.com/lede-project/source.git /data/lede && cd /data/lede && git checkout openwrt-18.06
 
 WORKDIR /data/lede
 
