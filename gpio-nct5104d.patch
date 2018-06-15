@@ -1,11 +1,12 @@
 --- a/gpio-nct5104d.c
 +++ b/gpio-nct5104d.c
-@@ -435,8 +435,15 @@ static int __init nct5104d_gpio_init(void)
+@@ -435,9 +435,16 @@ static int __init nct5104d_gpio_init(void)
         const char *board_name = dmi_get_system_info(DMI_BOARD_NAME);
  
         /* Make sure we only run on PC Engine APU boards */
 -       if (!board_name || !board_vendor || strcasecmp(board_vendor, "PC Engines") || strncasecmp(board_name, "apu", 3)) {
 -               return -ENODEV;
+-       }
 +       if (!board_name \
 +                       || !board_vendor \
 +                       || strcasecmp(board_vendor, "PC Engines") \
@@ -15,6 +16,7 @@
 +                               && strcasecmp(board_name, "PC Engines apu3"))) {
 +               err = -ENODEV;
 +               goto exit;
-        }
++        }
  
         if (nct5104d_find(0x2e, &sio) &&
+            nct5104d_find(0x4e, &sio))
