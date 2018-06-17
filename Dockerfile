@@ -14,13 +14,20 @@ WORKDIR /data/lede
 RUN ./scripts/feeds update -a && \
     ./scripts/feeds install -a
 
+RUN mkdir -p ./patches
+
+COPY 301-fix-apu2-boardname.patch ./patches/
+COPY 302-fix-apu2-nct5104d-chipID.patch ./patches/
+COPY series ./patches/
+
+RUN quilt push -a
+
+#RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/
+#COPY 301-fix-apu2-boardname.patch ./package/kernel/gpio-nct5104d/patches/
+#COPY 302-fix-apu2-nct5104d-chipID.patch ./package/kernel/gpio-nct5104d/patches/
+
 COPY .config ./
 COPY .kconfig ./
-
-RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/
-COPY 301-fix-apu2-boardname.patch ./package/kernel/gpio-nct5104d/patches/
-COPY 302-fix-apu2-nct5104d-chipID.patch ./package/kernel/gpio-nct5104d/patches/
-
 COPY kconfig.sh ./
 
 RUN cat ./.config
@@ -53,9 +60,6 @@ RUN apk update && apk add --no-cache curl jq tzdata
 COPY --from=builder /data/lede/bin/* /tmp/
 
 RUN cd /tmp/x86/64 && ls /tmp/x86/64 |grep 'combined-ext4.img.gz' | xargs -I % -n1 mv % /tmp/lede-snapshot-combined-ext4.img.gz
-
-#RUN url=$(curl --upload-file /tmp/lede-snapshot-combined-ext4.img.gz https://transfer.sh/lede-snapshot-combined-ext4.img.gz) && \
-#curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"${name}"'","value2":"'"${type}"'","value3":"'"${url}"'"}' https://maker.ifttt.com/trigger/upload/with/key/cPy1lybKqXvF7uT3LvDTkk
 
 RUN checksum=$(sha256sum /tmp/lede-snapshot-combined-ext4.img.gz)
 
