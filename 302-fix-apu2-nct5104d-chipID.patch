@@ -20,3 +20,4 @@
                 sio->type = nct5104d;
                 /* enable GPIO0 and GPIO1 */
                 superio_select(addr, SIO_LD_GPIO);
+
