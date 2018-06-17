@@ -1,5 +1,5 @@
---- a/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
-+++ b/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
+--- a/gpio-nct5104d.c
++++ b/gpio-nct5104d.c
 @@ -35,7 +35,8 @@
  #define SIO_LOCK_KEY           0xAA    /* Key to disable Super-I/O */
  
