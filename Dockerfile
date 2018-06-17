@@ -14,9 +14,10 @@ WORKDIR /data/lede
 RUN ./scripts/feeds update -a && \
     ./scripts/feeds install -a
 
-RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/
+RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/ ./package/kernel/leds-apu2/patches/
 COPY 301-fix-apu2-boardname.patch ./package/kernel/gpio-nct5104d/patches/
 COPY 302-fix-apu2-nct5104d-chipID.patch ./package/kernel/gpio-nct5104d/patches/
+COPY 301-leds-apu2-boardname.patch ./package/kernel/leds-apu2/patches/
 
 COPY .config ./
 COPY .kconfig ./
