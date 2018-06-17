@@ -6,11 +6,11 @@
         /* Match the device name/model */
 -       if (!board_name || !board_vendor || strcasecmp(board_vendor, "PC Engines") || strcasecmp(board_name, "apu2")) {
 +       if (!board_name || !board_vendor ||
-+           strcasecmp(board_vendor, "PC Engines") ||
-+           (strcasecmp(board_name, "PCEngines apu2") &&
-+            strcasecmp(board_name, "PC Engines apu2") &&
-+            strcasecmp(board_name, "APU2"))
-+          ) {
++               strcasecmp(board_vendor, "PC Engines") ||
++               (strcasecmp(board_name, "PCEngines apu2") &&
++               strcasecmp(board_name, "PC Engines apu2") &&
++               strcasecmp(board_name, "APU2"))
++       ) {
                 err = -ENODEV;
                 goto exit;
         }
