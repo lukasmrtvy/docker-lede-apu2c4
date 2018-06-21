@@ -15,10 +15,10 @@ RUN ./scripts/feeds update -a && \
     ./scripts/feeds install -a
 
 RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/ ./package/kernel/leds-apu2/patches/
-#COPY 301-fix-apu2-boardname.patch ./package/kernel/gpio-nct5104d/patches/
-#COPY 302-fix-apu2-nct5104d-chipID.patch ./package/kernel/gpio-nct5104d/patches/
-COPY 301-leds-apu2-boardname.patch ./package/kernel/leds-apu2/patches/
-COPY 305-patch ./package/kernel/leds-apu2/patches/
+COPY 301-fix-apu2-boardname.patch /tmp
+COPY 302-fix-apu2-nct5104d-chipID.patch /tmp
+COPY 301-leds-apu2-boardname.patch /tmp
+
 
 COPY .config ./
 COPY .kconfig ./
@@ -31,12 +31,7 @@ RUN chmod +x kconfig.sh
 RUN ./kconfig.sh
 
 RUN make defconfig
-
-#RUN yes "" | make kernel_oldconfig CONFIG_TARGET=subtarget
-
-#RUN make download
-
-RUN echo "10.0.0.4 ftp.gnupg.org " >> /etc/hosts && make download
+RUN make download
 
 #RUN make -j $(getconf _NPROCESSORS_ONLN)
 RUN make -j1 V=s  2>&1
