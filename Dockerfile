@@ -30,8 +30,7 @@ RUN cat ./.kconfig
 RUN chmod +x kconfig.sh
 RUN ./kconfig.sh
 
-RUN make defconfig
-RUN make download
+RUN make defconfig && make download
 
 #RUN make -j $(getconf _NPROCESSORS_ONLN)
 RUN make -j1 V=s  2>&1
@@ -39,9 +38,7 @@ RUN make -j1 V=s  2>&1
 
 
 
-
 FROM alpine:3.7
-
 ENV TZ=Europe/Prague
 
 RUN apk update && apk add --no-cache curl jq tzdata
