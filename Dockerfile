@@ -36,10 +36,7 @@ RUN ./kconfig.sh
 RUN make defconfig
 
 #RUN yes "" | make kernel_oldconfig CONFIG_TARGET=subtarget
-
-#RUN make download
-
-RUN echo "10.0.0.4 ftp.gnupg.org " >> /etc/hosts && make download
+RUN make download
 
 #RUN make -j $(getconf _NPROCESSORS_ONLN)
 RUN make -j1 V=s  2>&1
