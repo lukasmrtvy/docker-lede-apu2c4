@@ -32,8 +32,8 @@ RUN ./kconfig.sh
 
 RUN make defconfig && make download
 
-#RUN make -j $(getconf _NPROCESSORS_ONLN)
-RUN make -j1 V=s  2>&1
+RUN make -j $(getconf _NPROCESSORS_ONLN)
+#RUN make -j1 V=s  2>&1
 
 
 
