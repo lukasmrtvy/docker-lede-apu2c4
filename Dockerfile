@@ -17,9 +17,11 @@ RUN ./scripts/feeds update -a && \
 COPY .config ./
 COPY .kconfig ./
 
+#
 #RUN mkdir -p ./package/kernel/gpio-nct5104d/patches/
 #COPY 301-fix-apu2-boardname.patch ./package/kernel/gpio-nct5104d/patches/
 #COPY 302-fix-apu2-nct5104d-chipID.patch ./package/kernel/gpio-nct5104d/patches/
+#
 
 COPY kconfig.sh ./
 
