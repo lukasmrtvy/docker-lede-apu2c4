@@ -17,7 +17,11 @@ RUN ./scripts/feeds update -a && \
 COPY .config ./
 COPY .kconfig ./
 
-COPY gpio-nct5104d.c ./package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
+COPY 301-kernel-gpio-nct5104d-remove-boardname-check.patch ./custom-patches/
+COPY 301-kernel-leds-apu2-remove-boardname-check.patch ./custom-patches/
+
+RUN git apply ./custom-patches/301-kernel-leds-apu2-remove-boardname-check.patch 
+RUN git apply ./custom-patches/301-kernel-gpio-nct5104d-remove-boardname-check.patch
 
 COPY kconfig.sh ./
 
