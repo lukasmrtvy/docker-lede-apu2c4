@@ -37,6 +37,7 @@ RUN yes n | make kernel_oldconfig CONFIG_TARGET=subtarget
 
 RUN make download
 
+
 RUN cat ./.config
 
 RUN make -j $(getconf _NPROCESSORS_ONLN)  V=s
