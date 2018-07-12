@@ -28,6 +28,9 @@ RUN chmod +x kconfig.sh
 RUN ./kconfig.sh
 
 RUN make defconfig
+
+RUN yes n | make kernel_oldconfig CONFIG_TARGET=subtarget
+
 RUN make download
 
 RUN cat ./.config
