@@ -1,0 +1,31 @@
+From 16bea0282210affa4603543d4c0deff1539843e3 Mon Sep 17 00:00:00 2001
+From: Lukas Mrtvy <lukas.mrtvy@gmail.com>
+Date: Wed, 11 Jul 2018 10:33:00 +0200
+Subject: [PATCH] kernel: gpio-nct5104d remove boardname check
+
+'In different versions of coreboot are different names of apu boardname.
+No need to check boardname to load module.'
+
+Signed-off-by: Lukas Mrtvy <lukas.mrtvy@gmail.com>
+---
+ package/kernel/gpio-nct5104d/src/gpio-nct5104d.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c b/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
+index c139cf8d20..8da7580562 100644
+--- a/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
++++ b/package/kernel/gpio-nct5104d/src/gpio-nct5104d.c
+@@ -434,11 +434,6 @@ static int __init nct5104d_gpio_init(void)
+ 	const char *board_vendor = dmi_get_system_info(DMI_BOARD_VENDOR);
+ 	const char *board_name = dmi_get_system_info(DMI_BOARD_NAME);
+ 
+- 	/* Make sure we only run on PC Engine APU boards */
+-	if (!board_name || !board_vendor || strcasecmp(board_vendor, "PC Engines") || strncasecmp(board_name, "apu", 3)) {
+-		return -ENODEV;
+-	}
+-
+ 	if (nct5104d_find(0x2e, &sio) &&
+ 	    nct5104d_find(0x4e, &sio))
+ 		return -ENODEV;
+-- 
+2.14.1
