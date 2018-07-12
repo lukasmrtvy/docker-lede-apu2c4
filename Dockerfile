@@ -1,4 +1,4 @@
-FROM ubuntu:17.10 as builder
+FROM ubuntu:18.04 as builder
 
 ENV VERSION 17.01.4
 ENV FORCE_UNSAFE_CONFIGURE 1
