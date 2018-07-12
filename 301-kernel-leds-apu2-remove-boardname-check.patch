@@ -1,0 +1,38 @@
+From b7130b24c975301741d8dc69dea10bfb6348f0e3 Mon Sep 17 00:00:00 2001
+From: Lukas Mrtvy <lukas.mrtvy@gmail.com>
+Date: Wed, 11 Jul 2018 10:22:27 +0200
+Subject: [PATCH] kernel: leds-apu2 remove boardname check
+
+'In different versions of coreboot are different names of apu boardname.
+No need to check boardname to load module.'
+
+Signed-off-by: Lukas Mrtvy <lukas.mrtvy@gmail.com>
+---
+ package/kernel/leds-apu2/src/leds-apu2.c | 12 ------------
+ 1 file changed, 12 deletions(-)
+
+diff --git a/package/kernel/leds-apu2/src/leds-apu2.c b/package/kernel/leds-apu2/src/leds-apu2.c
+index 2fefa857cb..ff13b3cde1 100644
+--- a/package/kernel/leds-apu2/src/leds-apu2.c
++++ b/package/kernel/leds-apu2/src/leds-apu2.c
+@@ -331,18 +331,6 @@ static int __init gpio_apu2_init (void)
+ 	const char *board_vendor = dmi_get_system_info(DMI_BOARD_VENDOR);
+ 	const char *board_name = dmi_get_system_info(DMI_BOARD_NAME);
+ 
+-	/* Match the device name/model */
+-	if (!board_name \
+-			|| !board_vendor \
+-			|| strcasecmp(board_vendor, "PC Engines") \
+-			|| (strcasecmp(board_name, "apu2") \
+-				&& strcasecmp(board_name, "apu3") \
+-				&& strcasecmp(board_name, "PC Engines apu2") \
+-				&& strcasecmp(board_name, "PC Engines apu3"))) {
+-		err = -ENODEV;
+-		goto exit;
+-	}
+-
+ 	pr_info ("%s: load APU2/LED GPIO driver module\n", DEVNAME);
+ 
+ 	err = platform_driver_register (&gpio_apu2_driver);
+-- 
+2.14.1
