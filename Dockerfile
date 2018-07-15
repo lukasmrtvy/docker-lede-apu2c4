@@ -33,13 +33,13 @@ RUN ./kconfig.sh
 
 RUN make defconfig
 
-RUN yes n | make kernel_oldconfig CONFIG_TARGET=subtarget
+#RUN yes n | make kernel_oldconfig CONFIG_TARGET=subtarget
 
 RUN make download
 
 RUN cat ./.config
 
-RUN make -j $(getconf _NPROCESSORS_ONLN)  V=s
+RUN yes n | make -j $(getconf _NPROCESSORS_ONLN)  V=s
 #RUN make -j1 V=s  2>&1
 
 FROM alpine:3.7
