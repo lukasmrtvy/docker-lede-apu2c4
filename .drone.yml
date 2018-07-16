@@ -3,6 +3,6 @@ pipeline:
     image: docker
     commands:
       - docker info
-      - docker build --rm -t --no-cache test .
+      - docker build --rm  --no-cache -t test-test .
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
