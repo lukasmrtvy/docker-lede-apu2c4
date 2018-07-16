@@ -3,13 +3,13 @@ Date: Mon, 16 Jul 2018 15:35:14 +0200
 Subject: [PATCH] package: lxc bump to 3.0.1
 
 ---
- utils/lxc/Makefile | 4 ++--
+ feeds/packages/utils/lxc/Makefile | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/feeds/packages/utils/lxc/Makefile b/feeds/packages/utils/lxc/Makefile
 index 288d5039..59b086c9 100644
---- a/utils/lxc/Makefile
-+++ b/utils/lxc/Makefile
+--- a/feeds/packages/utils/lxc/Makefile
++++ b/feeds/packages/utils/lxc/Makefile
 @@ -8,7 +8,7 @@
  include $(TOPDIR)/rules.mk
  
