@@ -39,7 +39,7 @@ RUN make download
 
 RUN cat ./.config
 
-RUN yes n | make -j $(getconf _NPROCESSORS_ONLN)  V=s
+RUN make -j $(getconf _NPROCESSORS_ONLN)  V=s
 #RUN make -j1 V=s  2>&1
 
 FROM alpine:3.7
