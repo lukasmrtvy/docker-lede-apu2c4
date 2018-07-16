@@ -18,10 +18,12 @@ COPY .config ./
 COPY .kconfig ./
 
 COPY 301-kernel-gpio-nct5104d-remove-boardname-check.patch ./custom-patches/
-COPY 301-kernel-leds-apu2-remove-boardname-check.patch ./custom-patches/
+COPY 301-kernel-leds-apu2-remove-boardname-check.patch  ./custom-patches/
+COPY 001-package-lxc-bump-to-3.0.1.patch ./custom-patches/
 
 RUN git apply ./custom-patches/301-kernel-leds-apu2-remove-boardname-check.patch 
 RUN git apply ./custom-patches/301-kernel-gpio-nct5104d-remove-boardname-check.patch
+RUN git apply ./custom-patches/001-package-lxc-bump-to-3.0.1.patch
 
 COPY kconfig.sh ./
 
