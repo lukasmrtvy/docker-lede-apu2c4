@@ -5,13 +5,13 @@ Subject: [PATCH] procd: change noatime to relatime for unprivileged lxc
 
 Signed-off-by: Lukas Mrtvy <lukas.mrtvy@gmail.com>
 ---
- package/system/procd/initd/early.c | 12 ++++++------
+ initd/early.c | 12 ++++++------
  1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/package/system/procd/initd/early.c b/package/system/procd/initd/early.c
+diff --git a/initd/early.c b/initd/early.c
 index 00fd946..ca66b98 100644
---- a/package/system/procd/initd/early.c
-+++ b/package/system/procd/initd/early.c
+--- a/initd/early.c
++++ b/initd/early.c
 @@ -56,22 +56,22 @@ early_mounts(void)
  {
  unsigned int oldumask = umask(0);
