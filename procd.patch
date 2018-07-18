@@ -1,0 +1,14 @@
+diff -Nru a/initd/early.c b/initd/early.c
+--- a/initd/early.c	2016-05-30 14:13:14.000000000 +0200
++++ b/initd/early.c	2016-05-31 09:09:57.197275272 +0200
+@@ -55,8 +55,8 @@
+ {
+ 	unsigned int oldumask = umask(0);
+ 
+-	mount("proc", "/proc", "proc", MS_NOATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
+-	mount("sysfs", "/sys", "sysfs", MS_NOATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
++	mount("proc", "/proc", "proc", MS_RELATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
++	mount("sysfs", "/sys", "sysfs", MS_RELATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
+ 	mount("cgroup", "/sys/fs/cgroup", "cgroup",  MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
+ 	mount("tmpfs", "/dev", "tmpfs", MS_NOATIME | MS_NOSUID, "mode=0755,size=512K");
+ 	ignore(symlink("/tmp/shm", "/dev/shm"));
