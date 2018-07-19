@@ -38,5 +38,7 @@ RUN ls -lha ./package/ || exit 0
 RUN ls -lha ./package/system/ || exit 0
 RUN ls -lha ./package/system/procd/ || exit 0
 RUN ls -lha ./package/system/procd/initd/ || exit 0
+RUN ls -lha ./package/system/procd/patches || exit 0
+RUN ls -lha ./package/system/procd/files || exit 0
 
 #RUN cat ./package/system/procd/initd/early.c
