@@ -1,35 +1,31 @@
-diff --git a/initd/early.c b/initd/early.c
-index 00fd946..ca66b98 100644
---- a/initd/early.c
-+++ b/initd/early.c
-@@ -56,22 +56,22 @@ early_mounts(void)
+--- a/initd/early.c	2018-07-19 10:10:50.428932743 +0200
++++ b/initd/early.c	2018-07-19 16:57:49.612543397 +0200
+@@ -56,22 +56,22 @@
  {
- unsigned int oldumask = umask(0);
+ 	unsigned int oldumask = umask(0);
  
--mount("proc", "/proc", "proc", MS_NOATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
--mount("sysfs", "/sys", "sysfs", MS_NOATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
-+mount("proc", "/proc", "proc", MS_RELATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
-+mount("sysfs", "/sys", "sysfs", MS_RELATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
- mount("cgroup", "/sys/fs/cgroup", "cgroup",  MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
--mount("tmpfs", "/dev", "tmpfs", MS_NOATIME | MS_NOSUID, "mode=0755,size=512K");
-+mount("tmpfs", "/dev", "tmpfs", MS_RELATIME | MS_NOSUID, "mode=0755,size=512K");
- ignore(symlink("/tmp/shm", "/dev/shm"));
- mkdir("/dev/pts", 0755);
--mount("devpts", "/dev/pts", "devpts", MS_NOATIME | MS_NOEXEC | MS_NOSUID, "mode=600");
-+mount("devpts", "/dev/pts", "devpts", MS_RELATIME | MS_NOEXEC | MS_NOSUID, "mode=600");
- early_dev();
+-	mount("proc", "/proc", "proc", MS_NOATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
+-	mount("sysfs", "/sys", "sysfs", MS_NOATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
++	mount("proc", "/proc", "proc", MS_RELATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
++	mount("sysfs", "/sys", "sysfs", MS_RELATIME | MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
+ 	mount("cgroup", "/sys/fs/cgroup", "cgroup",  MS_NODEV | MS_NOEXEC | MS_NOSUID, 0);
+-	mount("tmpfs", "/dev", "tmpfs", MS_NOATIME | MS_NOSUID, "mode=0755,size=512K");
++	mount("tmpfs", "/dev", "tmpfs", MS_RELATIME | MS_NOSUID, "mode=0755,size=512K");
+ 	ignore(symlink("/tmp/shm", "/dev/shm"));
+ 	mkdir("/dev/pts", 0755);
+-	mount("devpts", "/dev/pts", "devpts", MS_NOATIME | MS_NOEXEC | MS_NOSUID, "mode=600");
++	mount("devpts", "/dev/pts", "devpts", MS_RELATIME | MS_NOEXEC | MS_NOSUID, "mode=600");
+ 	early_dev();
  
- early_console("/dev/console");
- if (mount_zram_on_tmp()) {
--mount("tmpfs", "/tmp", "tmpfs", MS_NOSUID | MS_NODEV | MS_NOATIME, 0);
-+mount("tmpfs", "/tmp", "tmpfs", MS_NOSUID | MS_NODEV | MS_RELATIME, 0);
- mkdir("/tmp/shm", 01777);
- } else {
- mkdir("/tmp/shm", 01777);
--mount("tmpfs", "/tmp/shm", "tmpfs", MS_NOSUID | MS_NODEV | MS_NOATIME,
-+mount("tmpfs", "/tmp/shm", "tmpfs", MS_NOSUID | MS_NODEV | MS_RELATIME,
- "mode=01777");
- }
- mkdir("/tmp/run", 0755);
--- 
-2.17.1
+ 	early_console("/dev/console");
+ 	if (mount_zram_on_tmp()) {
+-		mount("tmpfs", "/tmp", "tmpfs", MS_NOSUID | MS_NODEV | MS_NOATIME, 0);
++		mount("tmpfs", "/tmp", "tmpfs", MS_NOSUID | MS_NODEV | MS_RELATIME, 0);
+ 		mkdir("/tmp/shm", 01777);
+ 	} else {
+ 		mkdir("/tmp/shm", 01777);
+-		mount("tmpfs", "/tmp/shm", "tmpfs", MS_NOSUID | MS_NODEV | MS_NOATIME,
++		mount("tmpfs", "/tmp/shm", "tmpfs", MS_NOSUID | MS_NODEV | MS_RELATIME,
+ 				"mode=01777");
+ 	}
+ 	mkdir("/tmp/run", 0755);
