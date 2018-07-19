@@ -31,4 +31,6 @@ RUN make -j $(getconf _NPROCESSORS_ONLN) toolchain/install
 
 COPY 001-procd-change-noatime-to-relatime-for-unprivileged-lx.patch ./package/system/procd/patches/001-procd-change-noatime-to-relatime-for-unprivileged-lx.patch
 
-RUN make -j1 V=s package/procd/compile
+RUN make -j1 V=s package/procd/compile || exit 0
+
+RUN cat ./package/system/procd/initd/early.c
