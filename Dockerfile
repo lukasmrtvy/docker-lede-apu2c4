@@ -33,6 +33,9 @@ COPY 001-procd-change-noatime-to-relatime-for-unprivileged-lx.patch ./package/sy
 
 RUN make -j1 V=s package/procd/compile || exit 0
 
+RUN ls -lha ./ || exit 0
+RUN ls -lha ./package/ || exit 0
+RUN ls -lha ./package/system/ || exit 0
 RUN ls -lha ./package/system/procd/ || exit 0
 RUN ls -lha ./package/system/procd/initd/ || exit 0
 
