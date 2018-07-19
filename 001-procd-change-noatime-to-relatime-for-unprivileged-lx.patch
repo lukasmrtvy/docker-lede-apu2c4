@@ -1,5 +1,3 @@
-diff --git a/initd/early.c b/initd/early.c
-index 00fd946..ca66b98 100644
 --- a/initd/early.c
 +++ b/initd/early.c
 @@ -56,22 +56,22 @@ early_mounts(void)
