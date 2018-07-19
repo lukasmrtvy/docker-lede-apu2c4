@@ -1,13 +1,3 @@
-From cf20644ee522f0d7917d5debd1cad4d1b1cea314 Mon Sep 17 00:00:00 2001
-From: Lukas Mrtvy <lukas.mrtvy@gmail.com>
-Date: Wed, 18 Jul 2018 23:07:41 +0200
-Subject: [PATCH] procd: change noatime to relatime for unprivileged lxc
-
-Signed-off-by: Lukas Mrtvy <lukas.mrtvy@gmail.com>
----
- initd/early.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
 diff --git a/initd/early.c b/initd/early.c
 index 00fd946..ca66b98 100644
 --- a/initd/early.c
