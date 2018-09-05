@@ -56,6 +56,9 @@ ENV TZ=Europe/Prague
 RUN apk update && apk add --no-cache curl jq tzdata
 RUN echo test
 COPY --from=builder /data/lede/bin/* /tmp/
+
+RUN ls -lha /tmp/
+
 RUN cd /tmp/x86/64 && ls /tmp/x86/64 |grep 'combined-ext4.img.gz' | xargs -I % -n1 mv % /tmp/lede-snapshot-combined-ext4.img.gz
 RUN checksum=$(sha256sum /tmp/lede-snapshot-combined-ext4.img.gz)
 RUN datum=$(date +"%Y-%m-%dT%H:%M:%SZ") &&  response=$(curl -F "file=@/tmp/lede-snapshot-combined-ext4.img.gz" https://file.io) && url=$(echo $response | jq -r .link) && \
