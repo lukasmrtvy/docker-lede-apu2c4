@@ -17,13 +17,13 @@ RUN ./scripts/feeds update -a && \
 COPY .config ./
 COPY .kconfig ./
 
-COPY 301-kernel-gpio-nct5104d-remove-boardname-check.patch ./custom-patches/
-COPY 301-kernel-leds-apu2-remove-boardname-check.patch ./custom-patches/
+#COPY 301-kernel-gpio-nct5104d-remove-boardname-check.patch ./custom-patches/
+#COPY 301-kernel-leds-apu2-remove-boardname-check.patch ./custom-patches/
 
 COPY 001-procd-change-noatime-to-relatime-for-unprivileged-lx.patch ./package/system/procd/patches/001-procd-change-noatime-to-relatime-for-unprivileged-lx.patch
 
-RUN git apply ./custom-patches/301-kernel-leds-apu2-remove-boardname-check.patch 
-RUN git apply ./custom-patches/301-kernel-gpio-nct5104d-remove-boardname-check.patch
+#RUN git apply ./custom-patches/301-kernel-leds-apu2-remove-boardname-check.patch 
+#RUN git apply ./custom-patches/301-kernel-gpio-nct5104d-remove-boardname-check.patch
 
 
 #RUN git apply ./custom-patches/001-procd-change-noatime-to-relatime-for-unprivileged-lx.patch
