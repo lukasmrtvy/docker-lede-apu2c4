@@ -10,7 +10,7 @@ steps:
   - apt-get update && apt-get install -y subversion g++ zlib1g-dev build-essential git python rsync man-db libncurses5-dev gawk gettext unzip file libssl-dev wget curl time
   - mkdir -p /data/lede
   - cd /data/lede
-  - git clone https://github.com/lede-project/source.git 
+  - git clone https://github.com/openwrt/openwrt.git
   - git checkout openwrt-18.06
   - ./scripts/feeds update -a
   - ./scripts/feeds install -a
