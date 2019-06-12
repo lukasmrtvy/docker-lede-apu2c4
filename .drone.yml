@@ -6,6 +6,7 @@ steps:
   image: ubuntu:19.0
   environment:
   commands:
+  - ls -lha ./
   - apt-get update && apt-get install -y subversion g++ zlib1g-dev build-essential git python rsync man-db libncurses5-dev gawk gettext unzip file libssl-dev wget curl time
   - mkdir -p /data/lede
   - cd /data/lede
