@@ -18,7 +18,8 @@ steps:
   - ./scripts/feeds install -a
   - make defconfig
   - make download -j $(getconf _NPROCESSORS_ONLN)
-  - make -j $(getconf _NPROCESSORS_ONLN)  V=s
+  #- make -j $(getconf _NPROCESSORS_ONLN)  V=s
+  - make
   volumes:
   - name: cache
     path: /cache
