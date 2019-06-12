@@ -33,6 +33,15 @@ steps:
   - name: cache
     path: /cache
 
+- name: upload
+  image: plugins/s3
+  settings:
+    bucket: my-bucket-name
+    source: public/**/*
+    target: /target/location
+    path_style: true
+    endpoint: http://minio:9000
+
 volumes:
 - name: cache
   temp: {}
