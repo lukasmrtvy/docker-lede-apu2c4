@@ -49,6 +49,9 @@ steps:
     target: make.${DRONE_BUILD_NUMBER}.output
     path_style: true
     endpoint: http://minio:9000
+    access_key: admin
+    secret_key:
+      from_secret: MINIO_TOKEN
 
 volumes:
 - name: cache
