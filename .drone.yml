@@ -5,13 +5,14 @@ steps:
 - name: builder
   image: ubuntu:19.04
   environment:
+    VERSION: 18.06
   commands:
-  - ls -lha ./
-  - apt-get update && apt-get install -y subversion g++ zlib1g-dev build-essential git python rsync man-db libncurses5-dev gawk gettext unzip file libssl-dev wget curl time
+  - apt install build-essential libncurses5-dev python unzip
   - mkdir -p /data/lede
   - cd /data/lede
   - git clone https://github.com/openwrt/openwrt.git
-  - git checkout openwrt-18.06
+  - cd openwrt/
+  - git checkout openwrt-$VERSION
   - ./scripts/feeds update -a
   - ./scripts/feeds install -a
   - make defconfig
