@@ -17,7 +17,7 @@ steps:
   - ./scripts/feeds update -a
   - ./scripts/feeds install -a
   - make defconfig
-  - make download
+  - make download -j $(getconf _NPROCESSORS_ONLN)
   - make -j $(getconf _NPROCESSORS_ONLN)  V=s
   volumes:
   - name: cache
