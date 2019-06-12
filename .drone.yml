@@ -1,0 +1,21 @@
+kind: pipeline
+name: default
+
+steps:
+- name: builder
+  image: ubuntu:19.0
+  environment:
+  commands:
+  - apt-get update && apt-get install -y subversion g++ zlib1g-dev build-essential git python rsync man-db libncurses5-dev gawk gettext unzip file libssl-dev wget curl time
+  - mkdir -p /data/lede
+  - cd /data/lede
+  - git clone https://github.com/lede-project/source.git 
+  - git checkout openwrt-18.06
+  - ./scripts/feeds update -a
+  - ./scripts/feeds install -a
+  - make defconfig
+  - make download
+  - make -j $(getconf _NPROCESSORS_ONLN)  V=s
+  volumes:
+  - name: cache
+    path: /cache
