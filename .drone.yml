@@ -10,8 +10,8 @@ steps:
   commands:
   - apt -qq update
   - apt -qq install -y git build-essential libncurses5-dev python unzip gawk wget
-  - mkdir -p /data/lede
-  - cd /data/lede
+  - mkdir -p /cache/data/lede
+  - cd /cache/data/lede
   - git clone https://github.com/openwrt/openwrt.git
   - cd openwrt/
   - git checkout openwrt-$VERSION
@@ -24,3 +24,15 @@ steps:
   volumes:
   - name: cache
     path: /cache
+ 
+- name: test
+  image: alpine:3.9
+  commands:
+  - ls -lha /cache/data/lede/x86/64
+  volumes:
+  - name: cache
+    path: /cache
+
+volumes:
+- name: cache
+  temp: {}
