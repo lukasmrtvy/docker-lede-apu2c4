@@ -20,6 +20,8 @@ steps:
   - make defconfig
   - make download -j $(getconf _NPROCESSORS_ONLN)
   - make -j $(getconf _NPROCESSORS_ONLN)  V=s | tee make.output
+  - ls -lha /cache/build/openwrt/ | tee -a make.output
+  - ls -lha /cache/build/openwrt/bin/x86/64 | tee -a make.output
   #- make -j1 V=s
   volumes:
   - name: cache
@@ -28,7 +30,12 @@ steps:
 - name: test
   image: alpine:3.9
   commands:
-  - ls -lha /cache/build/openwrt/bin/x86/64
+  - ls -lha /cache/ || true
+  - ls -lha /cache/build/ || true
+  - ls -lha /cache/build/openwrt/
+  - ls -lha /cache/build/openwrt/bin/ || true
+  - ls -lha /cache/build/openwrt/bin/x86 || true
+  - ls -lha /cache/build/openwrt/bin/x86/64 || true
   volumes:
   - name: cache
     path: /cache
@@ -36,7 +43,7 @@ steps:
 - name: upload
   image: plugins/s3
   settings:
-    bucket: drone-logs
+    bucket: drone
     source: make.output
     target: make.${DRONE_BUILD_NUMBER}.output
     path_style: true
