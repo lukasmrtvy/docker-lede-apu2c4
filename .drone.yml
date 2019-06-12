@@ -8,7 +8,7 @@ steps:
     VERSION: 18.06
   commands:
   - apt update
-  - apt install -y git build-essential libncurses5-dev python unzip
+  - apt install -y git build-essential libncurses5-dev python unzip awk wget
   - mkdir -p /data/lede
   - cd /data/lede
   - git clone https://github.com/openwrt/openwrt.git
