@@ -7,6 +7,7 @@ steps:
   environment:
     VERSION: 18.06
   commands:
+  - apt update
   - apt install build-essential libncurses5-dev python unzip
   - mkdir -p /data/lede
   - cd /data/lede
