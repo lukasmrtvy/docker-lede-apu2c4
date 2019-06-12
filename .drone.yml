@@ -28,7 +28,7 @@ steps:
 - name: test
   image: alpine:3.9
   commands:
-  - ls -lha /cache/data/lede/x86/64
+  - ls -lha /cache/data/lede/bin/x86/64
   volumes:
   - name: cache
     path: /cache
