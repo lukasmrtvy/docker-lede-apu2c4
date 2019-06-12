@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: builder
-  image: ubuntu:19.0
+  image: ubuntu:19.04
   environment:
   commands:
   - ls -lha ./
