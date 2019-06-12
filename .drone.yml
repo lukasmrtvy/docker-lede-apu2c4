@@ -19,7 +19,7 @@ steps:
   - make defconfig
   - make download -j $(getconf _NPROCESSORS_ONLN)
   #- make -j $(getconf _NPROCESSORS_ONLN)  V=s
-  - make
+  - make -j1 V=s
   volumes:
   - name: cache
     path: /cache
