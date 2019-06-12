@@ -40,6 +40,10 @@ steps:
   volumes:
   - name: cache
     path: /cache
+  when:
+    status:
+    - success
+    - failure
 
 - name: upload
   image: plugins/s3
@@ -52,6 +56,11 @@ steps:
     access_key: admin
     secret_key:
       from_secret: MINIO_TOKEN
+  when:
+    status:
+    - success
+    - failure
+
 
 volumes:
 - name: cache
