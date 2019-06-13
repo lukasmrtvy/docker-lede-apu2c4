@@ -32,10 +32,10 @@ steps:
   - ls -lha /cache/ || true
   - ls -lha /cache/build/ || true 
   - ls -lha /cache/build/openwrt/ || true
-  - ls -lha /cache/build/openwrt/packages/ || true
-  - ls -lha /cache/build/openwrt/targets/bin/ || true
-  - ls -lha /cache/build/openwrt/targets/bin/x86/ || true
-  - ls -lha /cache/build/openwrt/targets/bin/x86/64 || true
+  - ls -lha /cache/build/openwrt/bin/packages/ || true
+  - ls -lha /cache/build/openwrt/bin/targets/ || true
+  - ls -lha /cache/build/openwrt/bin/targets/x86/ || true
+  - ls -lha /cache/build/openwrt/bin/targets/x86/64 || true
   volumes:
   - name: cache
     path: /cache
