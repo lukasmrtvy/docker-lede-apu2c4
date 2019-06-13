@@ -15,6 +15,7 @@ steps:
   - git clone https://github.com/openwrt/openwrt.git
   - cd openwrt/
   - git checkout openwrt-$VERSION
+  - mv $DRONE_WORKSPACE/.config ./
   - ./scripts/feeds update -a
   - ./scripts/feeds install -a
   - make defconfig
@@ -32,6 +33,10 @@ steps:
   - ls -lha /cache/ || true
   - ls -lha /cache/build/ || true 
   - ls -lha /cache/build/openwrt/ || true
+  - ls -lha /cache/build/openwrt/bin/packages/ || true
+  - ls -lha /cache/build/openwrt/bin/ || true
+  - ls -lha /cache/build/openwrt/bin/x86/ || true
+  - ls -lha /cache/build/openwrt/bin/x86/64 || true
   - ls -lha /cache/build/openwrt/bin/packages/ || true
   - ls -lha /cache/build/openwrt/bin/targets/ || true
   - ls -lha /cache/build/openwrt/bin/targets/x86/ || true
