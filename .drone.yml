@@ -16,8 +16,8 @@ steps:
   - cd openwrt/
   - git checkout openwrt-$VERSION
   - mv $DRONE_WORKSPACE/.config ./
-  - mv $DRONE_WORKSPACE/.kconfig ./
-  - mv $DRONE_WORKSPACE/.kconfig.sh ./ && chmod +x kconfig.sh && ./kconfig.sh
+  #- mv $DRONE_WORKSPACE/.kconfig ./
+  #- mv $DRONE_WORKSPACE/.kconfig.sh ./ && chmod +x kconfig.sh && ./kconfig.sh
   - ./scripts/feeds update -a
   - ./scripts/feeds install -a
   - make defconfig
