@@ -7,6 +7,8 @@ steps:
   environment:
     VERSION: 18.06
     FORCE_UNSAFE_CONFIGURE: 1
+    MINIO_TOKEN:
+      from_secret: MINIO_TOKEN
   commands:
   - apt -qq update
   - apt -qq install -y git build-essential libncurses5-dev python unzip gawk wget
