@@ -24,7 +24,7 @@ steps:
   #- make download -j $(getconf _NPROCESSORS_ONLN)
   ##- make -j $(getconf _NPROCESSORS_ONLN)  V=s | tee make.output
   #- make -j$((`nproc`+1)) | tee -a make.output
-  - make -j1 V=s
+  - make -j1 V=s | tee -a /cache/make.output
   volumes:
   - name: cache
     path: /cache
@@ -55,13 +55,16 @@ steps:
   image: plugins/s3
   settings:
     bucket: drone
-    source: make.output
+    source: /cache/make.output
     target: make.${DRONE_BUILD_NUMBER}.output
     path_style: true
     endpoint: http://minio:9000
     access_key: admin
     secret_key:
       from_secret: MINIO_TOKEN
+  volumes:
+  - name: cache
+    path: /cache
   when:
     status:
     - success
