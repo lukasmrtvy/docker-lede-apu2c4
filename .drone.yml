@@ -29,7 +29,7 @@ steps:
   ###- make -j $(getconf _NPROCESSORS_ONLN)  V=s | tee make.output
   #- make -j$((`nproc`+1)) | tee -a make.output
   #- make -j1 V=s | tee -a /cache/make.output
-  - make -j1 V=s | /usr/bin/mc pipe myminio/drone/$DRONE_REPO_NAME.$DRONE_BUILD_NUMBER.output
+  - make -j1 V=s | /usr/bin/mc pipe myminio/drone/aha.output
   volumes:
   - name: cache
     path: /cache
