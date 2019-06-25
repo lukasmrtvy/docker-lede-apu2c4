@@ -30,7 +30,7 @@ steps:
   #- make -j$((`nproc`+1)) | tee -a make.output
   #- make -j1 V=s | tee -a /cache/make.output
   #- make -j1 V=s | /usr/bin/mc pipe myminio/drone/ahamake.output
-  - make -j1 V=s | tee -a /cache/make.output | /usr/bin/mc mirror /cache/make.output myminio/drone/mytest.output
+  - make -j1 V=s | tee -a /cache/make.output
   volumes:
   - name: cache
     path: /cache
@@ -62,9 +62,9 @@ steps:
   settings:
     bucket: drone
     source: /cache/make.output
-    target: make.${DRONE_BUILD_NUMBER}.output
+    target: $DRONE_REPO_NAME.$DRONE_BUILD_NUMBER.output
     path_style: true
-    endpoint: http://minio:9000
+    endpoint: https://minio.lukasmrtvy.cz
     access_key: admin
     secret_key:
       from_secret: MINIO_TOKEN
