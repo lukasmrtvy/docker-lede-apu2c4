@@ -31,7 +31,7 @@ steps:
   #- make -j1 V=s | tee -a /cache/make.output
   #- make -j1 V=s | /usr/bin/mc pipe myminio/drone/ahamake.output
   #- make -j1 V=s | tee -a /cache/make.output
-  - make -j$((`nproc`+1)) | tee -a make.output
+  - make -j$((`nproc`+1)) | tee -a /cache/make.output
   volumes:
   - name: cache
     path: /cache
