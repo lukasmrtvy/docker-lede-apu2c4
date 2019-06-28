@@ -30,24 +30,15 @@ steps:
   #- make -j$((`nproc`+1)) | tee -a make.output
   #- make -j1 V=s | tee -a /cache/make.output
   #- make -j1 V=s | /usr/bin/mc pipe myminio/drone/ahamake.output
-  - make -j1 V=s | tee -a /cache/make.output
+  #- make -j1 V=s | tee -a /cache/make.output
+  - make -j$((`nproc`+1)) | tee -a make.output
   volumes:
   - name: cache
     path: /cache
  
-- name: test
+- name: list-artifacts
   image: alpine:3.9
   commands:
-  - ls -lha /cache/ || true
-  - ls -lha /cache/build/ || true 
-  - ls -lha /cache/build/openwrt/ || true
-  - ls -lha /cache/build/openwrt/bin/packages/ || true
-  - ls -lha /cache/build/openwrt/bin/ || true
-  - ls -lha /cache/build/openwrt/bin/x86/ || true
-  - ls -lha /cache/build/openwrt/bin/x86/64 || true
-  - ls -lha /cache/build/openwrt/bin/packages/ || true
-  - ls -lha /cache/build/openwrt/bin/targets/ || true
-  - ls -lha /cache/build/openwrt/bin/targets/x86/ || true
   - ls -lha /cache/build/openwrt/bin/targets/x86/64/ || true
   volumes:
   - name: cache
@@ -57,12 +48,12 @@ steps:
     - success
     - failure
 
-- name: upload
+- name: upload-logs
   image: plugins/s3
   settings:
     bucket: drone
     source: /cache/make.output
-    target: $DRONE_REPO_NAME.$DRONE_BUILD_NUMBER.output
+    target: /logs/${DRONE_REPO_NAME}/${DRONE_BUILD_NUMBER}
     path_style: true
     endpoint: https://minio.lukasmrtvy.cz
     access_key: admin
@@ -76,6 +67,24 @@ steps:
     - success
     - failure
 
+
+- name: upload-artifacts
+  image: plugins/s3
+  settings:
+    bucket: drone
+    source: /cache/build/openwrt/bin/targets/x86/64/
+    target: /artifacts/${DRONE_REPO_NAME}/${DRONE_BUILD_NUMBER}
+    path_style: true
+    endpoint: https://minio.lukasmrtvy.cz
+    access_key: admin
+    secret_key:
+      from_secret: MINIO_TOKEN
+  volumes:
+  - name: cache
+    path: /cache
+  when:
+    status:
+    - success
 
 volumes:
 - name: cache
